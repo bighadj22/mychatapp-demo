@@ -1,0 +1,13 @@
+{
+  "version": "5",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1738305871862,
+      "tag": "0000_massive_thundra",
+      "breakpoints": true
+    }
+  ]
+}
