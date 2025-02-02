@@ -12,7 +12,7 @@ interface RequestBody {
 }
 
 export async function GET() {
-  console.log('[GET /api/chat/sessions] Received request');
+  
 
   try {
     const { env } = getRequestContext();
