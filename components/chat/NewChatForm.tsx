@@ -16,17 +16,15 @@ interface NewChatFormProps {
 }
 
 export default function NewChatForm({ user }: NewChatFormProps) {
-  const [input, setInput] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!input.trim() || isSubmitting) return
+    if (isSubmitting) return
 
     setIsSubmitting(true)
     const toastId = toast.loading('Creating new chat...')
-    const messageContent = input.trim() // Store input content
 
     try {
       const sessionResponse = await fetch('/api/chat/sessions', {
@@ -47,7 +45,7 @@ export default function NewChatForm({ user }: NewChatFormProps) {
       const sessionId = sessionResult.data.id
 
       toast.success('Chat created successfully', { id: toastId })
-      router.push(`/chat/${sessionId}?initialMessage=${encodeURIComponent(messageContent)}`) // Pass initial message as URL param
+      router.push(`/chat/${sessionId}`)
     } catch (error) {
       console.error('Failed to create chat session:', error)
       toast.error(
@@ -61,21 +59,10 @@ export default function NewChatForm({ user }: NewChatFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <Input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Type your message..."
-        className="w-full p-4 text-lg"
-        disabled={isSubmitting}
-        minLength={1}
-        maxLength={1000}
-        required
-      />
       <Button
         type="submit"
         className="w-full p-6 text-lg"
-        disabled={isSubmitting || !input.trim()}
+        disabled={isSubmitting}
       >
         {isSubmitting ? 'Creating Chat...' : 'Start New Chat'}
       </Button>
