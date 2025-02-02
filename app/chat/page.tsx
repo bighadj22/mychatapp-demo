@@ -24,7 +24,7 @@ export default async function ChatPage() {
             <CardTitle className="text-3xl font-bold text-center">Welcome to AI Chat</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-lg text-center mb-6">Start a new conversation by typing your message below.</p>
+            <p className="text-lg text-center mb-6">Start a new conversation</p>
             <NewChatForm user={user} />
           </CardContent>
         </Card>
