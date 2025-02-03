@@ -88,7 +88,7 @@ export default function ChatInterface({ session, user }: ChatInterfaceProps) {
     let accumulatedResponse = '';
     
     try {
-      const response = await fetch('https://mychatapp-api.contact7664.workers.dev/api/chat', {
+      const response = await fetch('https://yourworker/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
